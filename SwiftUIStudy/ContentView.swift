@@ -17,23 +17,7 @@ import SwiftUI
 // 중요한 부수 효과는 생명주기 또는 이벤트 처리 API에서 수행하게 해야 함.
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 20) {  // alignment, spacing 등을 받을 수 있음.
-            Image(systemName: "star.fill")
-                .font(.system(size: 60))  //  <- View Modifier. 외관이나 동작 관련 설정을 적용하는 메서드.
-            Text("SwiftUI Lab")
-                .font(.largeTitle)
-            Text("Study SwiftUI")
-                .fixedSize(horizontal: false, vertical: true)
-            Text("Very very very long long long text.")
-                .truncationMode(.middle)
-                .minimumScaleFactor(0.7)
-                .lineLimit(1)
-            HStack(spacing: 20) {
-                Button("A") { print("A") }
-                Button("B") { print("B") }
-            }
-        }
-        .padding(40)
+        BasicViewsLabView()
     }
 }
 
