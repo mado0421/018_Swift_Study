@@ -17,7 +17,8 @@ import SwiftUI
 // 중요한 부수 효과는 생명주기 또는 이벤트 처리 API에서 수행하게 해야 함.
 struct ContentView: View {
     var body: some View {
-        BasicViewsLabView()
+//        BasicViewsLabView()
+        DeclarativeUILabView()
     }
 }
 
