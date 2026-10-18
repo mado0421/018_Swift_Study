@@ -30,6 +30,10 @@ struct SwiftUIStudyApp: App {   // protocol App에서 main()을 제공하고 있
     // body는 compute property. some Scene을 반환한다.
     // get {}이 생략되어 이런 모습.
     // WindowGroup {}도 정확히는 init(@ViewBuilder content: @escaping ()-> Content)
+    
+    // Window Resizability(_:)라는 Scene Modifier가 있음.
+    // 창의 최소, 최대 크기를 어떤 기준으로 결정할지 지정.
+    // View는 .frame, Scene은 .windowResizability를 같이 써서 창 크기 제한을 할 것.
     var body: some Scene {
         WindowGroup {       // WindowGroup은 동일한 구조의 창들을 제공하는 Scene
                             // 새 창을 열면 동일한 구조의 창들을 여럿 열 수 있다.
