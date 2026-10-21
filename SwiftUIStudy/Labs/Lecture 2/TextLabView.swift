@@ -35,6 +35,7 @@ struct InnerTextEditView : View {
 struct TextLabView: View {
     @State private var message = "SwiftUI Lab"
     private let stringArray = ["Hello", "World"]
+    private let from = "A", to = "B"
 
     var body: some View {
         ScrollView {
@@ -45,8 +46,9 @@ struct TextLabView: View {
                 // 해당하는 번역 리소스가 없을 경우 키 자체가 표시됨.
                 // 이 때는 인라인 markdown도 해석함.
                 Text("**굵게**")
-                Text("Cancel", tableName: "LocalizableTest")
-                Text("Hello, \(message)")
+                Text("Cancel", tableName: "LocalizableText")
+                Text("Hello, \(message).", tableName: "LocalizableText")
+                Text("\(from) to \(to).", tableName: "LocalizableText")
                 Text(message)
                     .font(.system(size: 28, weight: .semibold, design: .rounded))
                     .foregroundStyle(Gradient(colors: [.white, .blue, .green]))
