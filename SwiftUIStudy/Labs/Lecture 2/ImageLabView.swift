@@ -15,7 +15,7 @@ struct ImageLabView: View {
                     .font(.title)
                     .fontDesign(.rounded)
                     .fontWeight(.semibold)
-                Button{
+                Button {
                     print("")
                 } label: {
                     Label {
@@ -64,7 +64,7 @@ struct ImageLabView: View {
             .border(.blue)
         }
         .padding()
-//        .frame(maxWidth: .infinity, alignment: .leading)
+        //        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
