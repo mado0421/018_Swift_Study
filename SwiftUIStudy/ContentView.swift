@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+private enum Lab: Hashable {
+    case lecture1
+    case lecture2
+}
+
 /*
  앱의 사용자 인터페이스 일부를 나타내는 타입이며, View를 설정할 수 있는 Modifier를 제공하는 프로토콜. 화면을 구성하기 위한 공통 인터페이스.
  Text, Button, VStack 등이 전부 View다. SwiftUI는 하나의 View 안에 다른 View들을 포함시켜 복잡한 화면을 구성할 수 있다.
@@ -16,9 +21,39 @@ import SwiftUI
 // 따라서 body의 내용물은 UI 구성을 선언하는 역할에 집중해야 함.
 // 중요한 부수 효과는 생명주기 또는 이벤트 처리 API에서 수행하게 해야 함.
 struct ContentView: View {
+    @State private var selection: Lab? = .lecture1
+    
     var body: some View {
-        TextLabView()
+        NavigationSplitView {
+            sidebar
+        } detail: {
+            selectedLab
+        }
     }
+    
+    private var sidebar: some View {
+        List(selection: $selection) {
+            Text("Lecture 1").tag(Lab.lecture1)
+            Text("Lecture 2").tag(Lab.lecture2)
+        }
+        .listStyle(.sidebar)
+        .navigationTitle("SwiftUI Lab") // <- ?
+    }
+    
+    @ViewBuilder
+    private var selectedLab: some View {
+        switch selection {
+        case .lecture1:
+            Lecture1SummaryLabView()
+        case .lecture2:
+            Lecture2SummaryLabView()
+        case nil:
+            Text("왼쪽 목록에서 실습을 선택하세요.")
+                .foregroundStyle(.secondary)
+                .padding()
+        }
+    }
+    
 }
 
 // #Preview는 Swift의 freestanding declaration macro. 독립적인 선언 위치에서 사용. 컴파일 과정에 Preview에 필요한 코드를 생성.
@@ -28,23 +63,27 @@ struct ContentView: View {
 #Preview("Default") {
     ContentView()
 }
-#Preview("Small Font"){
-    Text("SwiftUI")         // <- Text도 View protocol을 준수하기 때문에 가능.
-        .font(.caption)     // 근데 이렇게 하면 Selectable에서 선택이 안되는 듯.
-        .padding()
+#Preview("Dark") {
+    ContentView()
+        .preferredColorScheme(.dark)
 }
+//#Preview("Small Font"){
+//    Text("SwiftUI")         // <- Text도 View protocol을 준수하기 때문에 가능.
+//        .font(.caption)     // 근데 이렇게 하면 Selectable에서 선택이 안되는 듯.
+//        .padding()
+//}
 
 // View의 크기 및 레이아웃을 변경할 때는 .frame(width:height:)
 // Preview의 크기 및 레이아웃을 변경할 때는 .fixedLayout(width:height:)
 // macOS 창의 기본 크기를 설정할 때는 .defaultSize(width:height)
 // SwiftUI의 레이아웃 시스템은 부모가 자식에게 크기를 제안하고, 자식이 그 제안과 자신의 콘텐츠 및 레이아웃 규칙에 따라 크기를 결정하는 방식으로 동작.
-#Preview(
-    "Fixed Size",
-    traits: .fixedLayout(width: 10, height: 500)   // 표시 조건이나 동작 특성을 지정
-) {                                                 // Point 단위. != Pixel
-    ContentView()
-        .preferredColorScheme(.dark)
-}
+//#Preview(
+//    "Fixed Size",
+//    traits: .fixedLayout(width: 10, height: 500)   // 표시 조건이나 동작 특성을 지정
+//) {                                                 // Point 단위. != Pixel
+//    ContentView()
+//        .preferredColorScheme(.dark)
+//}
 /*
  Window, View, Layout, Container는 다음과 같이 이해할 수 있다.
  - Window: macOS가 관리하는 애플리케이션 창. 창의 크기가 800*500이라고 내부의 모든 View가 800*500인 것이 아니다.
