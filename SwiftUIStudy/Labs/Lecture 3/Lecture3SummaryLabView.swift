@@ -57,7 +57,7 @@ struct Lecture3SummaryLabView: View {
                 }
             }
             Text(
-                "current width: \(currentWidth), hasBorder: \(String(hasBorder))"
+                "current width: \(Int(currentWidth))pt, hasBorder: \(String(hasBorder))"
             )
         }
         .padding()
