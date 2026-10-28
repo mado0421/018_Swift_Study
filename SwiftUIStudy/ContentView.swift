@@ -10,6 +10,7 @@ import SwiftUI
 private enum Lab: Hashable {
     case lecture1
     case lecture2
+    case lecture3
 }
 
 /*
@@ -35,9 +36,10 @@ struct ContentView: View {
         List(selection: $selection) {
             Text("Lecture 1").tag(Lab.lecture1)
             Text("Lecture 2").tag(Lab.lecture2)
+            Text("Lecture 3").tag(Lab.lecture3)
         }
         .listStyle(.sidebar)
-        .navigationTitle("SwiftUI Lab") // <- ?
+        .navigationTitle("SwiftUI Lab")
     }
     
     @ViewBuilder
@@ -47,6 +49,8 @@ struct ContentView: View {
             Lecture1SummaryLabView()
         case .lecture2:
             Lecture2SummaryLabView()
+        case .lecture3:
+            Lecture3SummaryLabView()
         case nil:
             Text("왼쪽 목록에서 실습을 선택하세요.")
                 .foregroundStyle(.secondary)
