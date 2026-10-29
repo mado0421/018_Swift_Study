@@ -11,6 +11,7 @@ private enum Lab: Hashable {
     case lecture1
     case lecture2
     case lecture3
+    case lecture4
 }
 
 /*
@@ -37,6 +38,7 @@ struct ContentView: View {
             Text("Lecture 1").tag(Lab.lecture1)
             Text("Lecture 2").tag(Lab.lecture2)
             Text("Lecture 3").tag(Lab.lecture3)
+            Text("Lecture 4").tag(Lab.lecture4)
         }
         .listStyle(.sidebar)
         .navigationTitle("SwiftUI Lab")
@@ -51,6 +53,8 @@ struct ContentView: View {
             Lecture2SummaryLabView()
         case .lecture3:
             Lecture3SummaryLabView()
+        case .lecture4:
+            Lecture4SummaryLabView()
         case nil:
             Text("왼쪽 목록에서 실습을 선택하세요.")
                 .foregroundStyle(.secondary)
